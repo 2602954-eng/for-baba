@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Question for Baba!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #yes-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        #yes-btn:hover {
+            background-color: #27ae60;
+        }
+        #no-btn {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute;
+        }
+        .success-message {
+            display: none;
+            color: #27ae60;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-card">
+        <h1>Baba, will you buy me an iPhone? 📱✨</h1>
+        <div class="buttons">
+            <button id="yes-btn" onclick="sayYes()">Yes!</button>
+            <button id="no-btn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+        </div>
+        <div id="success" class="success-message">Yay! Best Baba ever! ❤️🎉</div>
+    </div>
+
+    <!-- Audio Element (Uses a royalty-free celebration sound by default) -->
+    <audio id="celebration-sound" src="https://mixkit.co" preload="auto"></audio>
+
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('no-btn');
+            // Get random X and Y positions within the window bounds
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function sayYes() {
+            // Hide buttons and question
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            
+            // Show success message
+            document.getElementById('success').style.display = 'block';
+            
+            // Play the music
+            const audio = document.getElementById('celebration-sound');
+            audio.play().catch(error => {
+                console.log("Audio play blocked or failed:", error);
+            });
+        }
+    </script>
+</body>
+</html>
